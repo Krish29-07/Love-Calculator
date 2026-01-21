@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Calculator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="./heart.png" id="heart" alt="" height="200" />
+        <h1>Love Calculator</h1>
+      </div>
+
+      <div class="inputs">
+        <input
+          type="text"
+          class="inpclass"
+          id="name1"
+          placeholder="Enter Your Name"
+        />
+        <input
+          type="text"
+          class="inpclass"
+          id="name2"
+          placeholder="Enter Your Partner's Name"
+        />
+
+        <button id="calcbtn" class="inpclass">Calculate Love</button>
+
+        <p id="result"></p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("calcbtn").addEventListener("click", () => {
+        const name1 = document.getElementById("name1").value.trim();
+
+        const name2 = document.getElementById("name2").value.trim();
+
+        if (name1 === "" || name2 === "") {
+          document.getElementById("result").innerText =
+            "Please Enter Both Names";
+          return;
+        }
+
+        const combined = (name1 + name2).toLowerCase();
+
+        let sum = 0;
+
+        for (let i = 0; i < combined.length; i++) {
+          sum += combined.charCodeAt(i);
+        }
+
+        const lovePercent = (sum % 100) + 1;
+
+        document.getElementById("result").innerText =
+          `${name1} ❤️ ${name2} = ${lovePercent}%`;
+
+        if (lovePercent < 75) {
+          document.getElementById("result").innerText =
+            `${name1} ❤️ ${name2} = ${lovePercent}%, Just Move On Bro..., She's Not For You`;
+        }
+      });
+    </script>
+  </body>
+</html>
